@@ -1,0 +1,31 @@
+name: New Okta User Created
+enabled: true
+description: |-
+  Detects new user account creation
+
+  References:
+  * https://developer.okta.com/docs/reference/api/event-types/
+
+  False Positives:
+  * Legitimate and authorized user creation
+severity: Informational
+query_text: |-
+  %ingest.source_type="okta:system"
+  eventType=user.lifecycle.create
+  | stats
+    min(timestamp) as firstTime,
+    max(timestamp) as lastTime,
+    count() as eventCount
+    by
+    severity,
+    eventType,
+    actor.id,
+    actor.type,
+    actor.alternateId,
+    actor.displayName,
+    outcome.result
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+

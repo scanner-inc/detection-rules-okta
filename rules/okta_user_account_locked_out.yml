@@ -1,0 +1,32 @@
+name: Okta User Account Locked Out
+enabled: true
+description: |-
+  Detects when an user account is locked out.
+
+  References:
+  * https://developer.okta.com/docs/reference/api/system-log/
+  * https://developer.okta.com/docs/reference/api/event-types/
+
+  False Positives:
+  * Unknown
+severity: Medium
+query_text: |-
+  %ingest.source_type="okta:system"
+  displayMessage: 'Max sign in attempts exceeded'
+  | stats
+    min(timestamp) as firstTime,
+    max(timestamp) as lastTime,
+    count() as eventCount
+    by
+    severity,
+    eventType,
+    actor.id,
+    actor.type,
+    actor.alternateId,
+    actor.displayName,
+    outcome.result
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+

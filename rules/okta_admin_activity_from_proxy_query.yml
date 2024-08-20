@@ -1,0 +1,34 @@
+name: Okta Admin Functions Access Through Proxy
+enabled: true
+description: |-
+  Detects access to Okta admin functions through proxy.
+
+  References:
+  * https://www.beyondtrust.com/blog/entry/okta-support-unit-breach
+  * https://dataconomy.com/2023/10/23/okta-data-breach/
+  * https://blog.cloudflare.com/how-cloudflare-mitigated-yet-another-okta-compromise/
+
+  False Positives:
+  * False positives are expected if administrators access these function through proxy legitimatly. Apply additional filters if necessary
+severity: Medium
+query_text: |-
+  %ingest.source_type="okta:system"
+  debugContext.debugData.requestUri: 'admin'
+  securityContext.isProxy: true
+  | stats
+    min(timestamp) as firstTime,
+    max(timestamp) as lastTime,
+    count() as eventCount
+    by
+    severity,
+    eventType,
+    actor.id,
+    actor.type,
+    actor.alternateId,
+    actor.displayName,
+    outcome.result
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+

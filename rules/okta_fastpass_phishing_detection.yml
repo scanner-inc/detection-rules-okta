@@ -1,0 +1,35 @@
+name: Okta FastPass Phishing Detection
+enabled: true
+description: |-
+  Detects when Okta FastPass prevents a known phishing site.
+
+  References:
+  * https://sec.okta.com/fastpassphishingdetection
+  * https://developer.okta.com/docs/reference/api/system-log/
+  * https://developer.okta.com/docs/reference/api/event-types/
+
+  False Positives:
+  * Unlikely
+severity: High
+query_text: |-
+  %ingest.source_type="okta:system"
+  eventType=user.authentication.auth_via_mfa
+  outcome.reason: 'FastPass declined phishing attempt'
+  outcome.result: 'FAILURE'
+  | stats
+    min(timestamp) as firstTime,
+    max(timestamp) as lastTime,
+    count() as eventCount
+    by
+    severity,
+    eventType,
+    actor.id,
+    actor.type,
+    actor.alternateId,
+    actor.displayName,
+    outcome.result
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+
