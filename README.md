@@ -25,5 +25,4 @@ in Scanner that are associated with these keys:
 
 To deploy these rules into your Scanner instance, you can follow the
 instructions in the [Scanner documentation](https://docs.scanner.dev) under
-**Detection Rules as Code**. Your Scanner instance will sync with the `main`
-branch of this repository, keeping your detections up-to-date.
+**Detection Rules as Code**.
