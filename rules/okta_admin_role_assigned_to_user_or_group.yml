@@ -1,3 +1,4 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
 name: Okta Admin Role Assigned to an User or Group
 enabled: true
 description: |-

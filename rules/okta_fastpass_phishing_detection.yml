@@ -1,3 +1,4 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
 name: Okta FastPass Phishing Detection
 enabled: true
 description: |-
