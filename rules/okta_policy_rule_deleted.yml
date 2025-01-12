@@ -1,0 +1,30 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Okta policy rule deleted
+description: |-
+  ## Goal
+  Detect when an Okta policy rule is deleted.
+
+  ## Strategy
+  Monitor the Okta event for policy rule deletions.
+
+  * Policy rule deletion event
+
+  ## Triage and response
+  1. Contact the Okta administrator to confirm that the user should be deleting policy rules.
+  2. If the change was not authorized, verify there are no other signals from the user.
+enabled: true
+severity: Informational
+query_text: |-
+  %ingest.source_type:okta
+  eventType:policy.rule.delete
+  outcome.result:SUCCESS
+  | groupbycount(actor.alternateId)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+tags:
+- source.okta
+- techniques.t1562.impair_defenses
+- tactics.ta0005.defense_evasion

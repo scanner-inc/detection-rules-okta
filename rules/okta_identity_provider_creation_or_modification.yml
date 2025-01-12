@@ -1,0 +1,29 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Okta Identity Provider creation or modification
+description: |
+  ## Goal
+  Detect when an Okta Identity Provider has been created or modified.
+
+  ## Strategy
+  This rule monitors for the creation or modification of an Okta Identity Provider. Recent reports highlight social engineering attacks where attackers set up a second Identity Provider to impersonate users and access applications within the compromised organization.
+
+  ## Triage and Response
+  1. Contact the user's email to verify if the change to the event name is authorized.
+  2. If the user was unaware of the change:
+      * Check for any unusual activity from this user, including variations in user agents, IP addresses, and network metadata.
+      * Initiate the organization's incident response process and investigate potential account takeovers.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:okta
+  eventType:system.idp.lifecycle*
+  | groupbycount(actor.alternateId)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- source.okta
+- techniques.t1556.modify_authentication_process
+- tactics.ta0006.credential_access

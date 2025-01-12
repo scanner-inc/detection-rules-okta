@@ -1,0 +1,26 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Okta API Token Created or Enabled
+description: |-
+  ## Goal
+  Detect when a new Okta API token is created.
+
+  ## Strategy
+  Monitor the Okta event for the creation of a new API token.
+
+  ## Triage and Response
+  Contact the user who created the API token to verify its necessity.
+enabled: true
+severity: Informational
+query_text: |-
+  %ingest.source_type:okta
+  eventType:system.api_token.create
+  | groupbycount(actor.alternateId)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+tags:
+- source.okta
+- techniques.t1098.account_manipulation
+- tactics.ta0003.persistence

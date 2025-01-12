@@ -1,0 +1,28 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Okta blocked numerous requests from a malicious IP
+description: |-
+  ## Goal
+  Detect when a request is blocked due to a block list rule (like an IP network zone or location rule).
+
+  ## Strategy
+  Monitor the following event to identify when a malicious IP address communicates with your account:
+
+  * Blocked request event
+
+  ## Triage & Response
+  1. Verify with the user that they were attempting a request to the target application.
+  2. If the request cannot be verified, correlate with other log sources to see if the blocked IP in the title has communicated elsewhere on the network.
+enabled: true
+severity: Informational
+query_text: |-
+  %ingest.source_type:okta
+  eventType:security.request.blocked
+  outcome.result:SUCCESS
+  | groupbycount(client.ipAddress, target_app)
+  | where @q.count > 10
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+tags:
+- source.okta

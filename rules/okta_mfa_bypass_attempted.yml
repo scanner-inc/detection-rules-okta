@@ -1,0 +1,28 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Okta MFA Bypass Attempted
+description: |-
+  ## Goal
+  Detect when a user attempts to bypass multi-factor authentication (MFA).
+
+  ## Strategy
+  Monitor Okta events to identify attempts to bypass MFA:
+
+  * User MFA attempt bypass
+
+  ## Triage and Response
+  Contact the user who attempted to bypass MFA to verify the legitimacy of the request.
+enabled: true
+severity: Informational
+query_text: |-
+  %ingest.source_type:okta
+  eventType:user.mfa.attempt_bypass
+  | groupbycount(actor.alternateId)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+tags:
+- source.okta
+- techniques.t1111.multi_factor_authentication_interception
+- tactics.ta0006.credential_access

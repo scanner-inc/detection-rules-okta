@@ -1,0 +1,29 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Okta User Attempted to Access Unauthorized App
+description: |-
+  ## Goal
+  Detect when a user is denied access to an app.
+
+  ## Strategy
+  Monitor Okta events to detect instances of users denied access to apps, specifically:
+
+  * Unauthenticated app access attempts
+
+  ## Triage and response
+  1. Verify if the user should have access to the app.
+  2. Contact the user to confirm if they attempted access or if their account may be compromised.
+enabled: true
+severity: Informational
+query_text: |-
+  %ingest.source_type:okta
+  eventType:app.generic.unauth_app_access_attempt
+  | groupbycount(actor.alternateId, target_app)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+tags:
+- source.okta
+- tactics.ta0007.discovery
+- techniques.t1526.cloud_service_discovery

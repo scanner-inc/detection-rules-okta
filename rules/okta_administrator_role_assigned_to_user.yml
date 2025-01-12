@@ -1,0 +1,29 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Okta administrator role assigned to user
+description: |-
+  ## Goal
+  Detect when administrative privileges are provisioned to an Okta user.
+
+  ## Strategy
+  Monitor the following Okta event to detect when administrative privileges are granted:
+
+  * user.account.privilege.grant
+
+  ## Triage and response
+  1. Contact the Okta administrator to confirm that the user or users should have administrative privileges.
+  2. If the change was not authorized, verify there are no other signals from the Okta administrator.
+enabled: true
+severity: Informational
+query_text: |-
+  %ingest.source_type:okta
+  eventType:user.account.privilege.grant
+  | groupbycount(actor.alternateId)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+tags:
+- tactics.ta0004.privilege_escalation
+- source.okta
+- techniques.t1098.account_manipulation

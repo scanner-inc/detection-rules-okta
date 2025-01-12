@@ -1,0 +1,32 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Okta user reported suspicious activity
+description: |-
+  ## Goal
+  Detect when an Okta user reports suspicious activity in response to a security notification.
+
+  ## Strategy
+  This rule monitors when an Okta user reports suspicious activity following a security notification, which allows users to report unrecognized activity related to:
+
+  * New sign-on notification
+  * Authenticator enrolled
+  * Authenticator reset
+  * Password changed
+
+  ## Triage and response
+  1. Identify the event type and the IP address from which suspicious activity originated.
+  2. Check for any other activity from this address using the IP Investigation dashboard.
+  3. If the activity appears harmful:
+      * Initiate your organization's incident response process and investigate for any account takeovers.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:okta
+  eventType:user.account.report_suspicious_activity_by_enduser
+  | groupbycount(actor.alternateId)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- source.okta

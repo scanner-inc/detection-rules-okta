@@ -1,0 +1,31 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Okta phishing detection with FastPass origin check
+description: |-
+  ## Goal
+  Detect when Okta raises a phishing detection with FastPass origin check.
+
+  ## Strategy
+  This rule monitors Okta for phishing detections related to FastPass. It identifies when a user enrolled in FastPass fails to authenticate due to a real-time adversary in the middle (AiTM) phishing proxy.
+
+  ## Triage and response
+  1. Extract the attacker's IP address.
+  2. Determine if any other users have authenticated from this address.
+  3. If yes, clear any user sessions and reset passwords if users entered a password during authentication.
+  4. Initiate your organization's incident response process and investigate for potential account takeovers.
+enabled: true
+severity: High
+query_text: |-
+  %ingest.source_type:okta
+  eventType:user.authentication.auth_via_mfa
+  outcome.result:FAILURE
+  outcome.reason:"FastPass declined phishing attempt"
+  | groupbycount(target.alternateId)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+tags:
+- source.okta
+- techniques.t1566.phishing
+- tactics.ta0001.initial_access
