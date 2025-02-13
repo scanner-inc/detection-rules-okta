@@ -30,4 +30,9 @@ time_range_s: 300
 run_frequency_s: 60
 event_sink_keys:
 - medium_severity_alerts
-
+tags:
+- source.okta
+- tactics.ta0003.persistence
+- tactics.ta0004.privilege_escalation
+- techniques.t1136.create_account
+- techniques.t1078.valid_accounts

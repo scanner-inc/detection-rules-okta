@@ -25,3 +25,7 @@ event_sink_keys:
 - informational_severity_alerts
 tags:
 - source.okta
+- tactics.ta0001.initial_access
+- tactics.ta0006.credential_access
+- techniques.t1110.brute_force
+- techniques.t1078.valid_accounts

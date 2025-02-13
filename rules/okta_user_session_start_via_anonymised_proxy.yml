@@ -31,4 +31,9 @@ time_range_s: 300
 run_frequency_s: 60
 event_sink_keys:
 - high_severity_alerts
-
+tags:
+- source.okta
+- tactics.ta0001.initial_access
+- tactics.ta0005.defense_evasion
+- techniques.t1090.proxy
+- techniques.t1078.valid_accounts

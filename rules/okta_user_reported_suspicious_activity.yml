@@ -30,3 +30,7 @@ event_sink_keys:
 - medium_severity_alerts
 tags:
 - source.okta
+- tactics.ta0001.initial_access
+- tactics.ta0006.credential_access
+- techniques.t1078.valid_accounts
+- techniques.t1539.steal_web_session_cookie

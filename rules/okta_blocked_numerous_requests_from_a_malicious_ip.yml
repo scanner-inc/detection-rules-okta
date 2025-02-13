@@ -26,3 +26,7 @@ event_sink_keys:
 - informational_severity_alerts
 tags:
 - source.okta
+- tactics.ta0043.reconnaissance
+- tactics.ta0001.initial_access
+- techniques.t1190.exploit_public_facing_application
+- techniques.t1133.external_remote_services

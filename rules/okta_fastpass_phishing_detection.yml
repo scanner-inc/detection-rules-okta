@@ -33,4 +33,9 @@ time_range_s: 300
 run_frequency_s: 60
 event_sink_keys:
 - high_severity_alerts
-
+tags:
+- source.okta
+- tactics.ta0001.initial_access
+- tactics.ta0006.credential_access
+- techniques.t1566.phishing
+- techniques.t1111.two_factor_authentication_interception
