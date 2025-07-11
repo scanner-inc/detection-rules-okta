@@ -15,7 +15,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:okta
+  %ingest.source_type:"okta:system"
   eventType:user.authentication.auth_via_mfa
   outcome.result:FAILURE
   outcome.reason:"FastPass declined phishing attempt"

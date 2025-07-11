@@ -12,7 +12,7 @@ description: |-
 enabled: true
 severity: Informational
 query_text: |-
-  %ingest.source_type:okta
+  %ingest.source_type:"okta:system"
   eventType:system.api_token.create
   | groupbycount(actor.alternateId)
   | where @q.count > 0
