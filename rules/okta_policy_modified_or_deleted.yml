@@ -14,7 +14,7 @@ description: |-
   * Okta Policies modified or deleted from unfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule.
 severity: Low
 query_text: |-
-  %ingest.source_type="okta:system"
+  @scnr.source_type="okta:system"
   eventType=(
     policy.lifecycle.update
     policy.lifecycle.delete

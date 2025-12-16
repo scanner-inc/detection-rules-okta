@@ -15,7 +15,7 @@ description: |-
 enabled: true
 severity: Informational
 query_text: |-
-  %ingest.source_type:okta
+  @scnr.source_type:okta
   eventType:user.account.privilege.grant
   | groupbycount(actor.alternateId)
   | where @q.count > 0

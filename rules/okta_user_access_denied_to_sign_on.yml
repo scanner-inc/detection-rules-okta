@@ -15,7 +15,7 @@ description: |-
 enabled: true
 severity: Informational
 query_text: |-
-  %ingest.source_type:okta
+  @scnr.source_type:okta
   eventType:application.policy.sign_on.deny_access
   | groupbycount(actor.alternateId)
   | where @q.count > 0

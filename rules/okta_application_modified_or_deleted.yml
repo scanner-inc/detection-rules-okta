@@ -12,7 +12,7 @@ description: |-
   * Unknown
 severity: Medium
 query_text: |-
-  %ingest.source_type="okta:system"
+  @scnr.source_type="okta:system"
   eventType=(
     "application.lifecycle.update"
     "application.lifecycle.delete"

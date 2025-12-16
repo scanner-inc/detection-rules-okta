@@ -12,7 +12,7 @@ description: |-
   * If an end-user incorrectly identifies normal activity as suspicious.
 severity: High
 query_text: |-
-  %ingest.source_type="okta:system"
+  @scnr.source_type="okta:system"
   eventType=user.account.report_suspicious_activity_by_enduser
   | stats
     min(@scnr.datetime) as firstTime,

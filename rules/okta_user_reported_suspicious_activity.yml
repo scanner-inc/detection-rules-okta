@@ -20,7 +20,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:okta
+  @scnr.source_type:okta
   eventType:user.account.report_suspicious_activity_by_enduser
   | groupbycount(actor.alternateId)
   | where @q.count > 0
