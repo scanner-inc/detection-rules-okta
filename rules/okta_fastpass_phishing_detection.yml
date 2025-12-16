@@ -13,7 +13,7 @@ description: |-
   * Unlikely
 severity: High
 query_text: |-
-  %ingest.source_type="okta:system"
+  @scnr.source_type="okta:system"
   eventType=user.authentication.auth_via_mfa
   outcome.reason: 'FastPass declined phishing attempt'
   outcome.result: 'FAILURE'

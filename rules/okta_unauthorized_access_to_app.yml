@@ -12,7 +12,7 @@ description: |-
   * User might of believe that they had access.
 severity: Medium
 query_text: |-
-  %ingest.source_type="okta:system"
+  @scnr.source_type="okta:system"
   displayMessage: 'User attempted unauthorized access to app'
   | stats
     min(@scnr.datetime) as firstTime,

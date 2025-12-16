@@ -15,7 +15,7 @@ description: |
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:okta
+  @scnr.source_type:okta
   eventType:system.idp.lifecycle*
   | groupbycount(actor.alternateId)
   | where @q.count > 0

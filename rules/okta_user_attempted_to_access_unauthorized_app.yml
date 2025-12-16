@@ -15,7 +15,7 @@ description: |-
 enabled: true
 severity: Informational
 query_text: |-
-  %ingest.source_type:okta
+  @scnr.source_type:okta
   eventType:app.generic.unauth_app_access_attempt
   | groupbycount(actor.alternateId, target_app)
   | where @q.count > 0

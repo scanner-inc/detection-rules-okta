@@ -12,7 +12,7 @@ description: |-
   * Administrator roles could be assigned to users or group by other admin users.
 severity: Medium
 query_text: |-
-  %ingest.source_type="okta:system"
+  @scnr.source_type="okta:system"
   eventType=(
     "group.privilege.grant"
     "user.account.privilege.grant"

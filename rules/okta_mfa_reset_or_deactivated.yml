@@ -12,7 +12,7 @@ description: |-
   * If a MFA reset or deactivated was performed by a system administrator.
 severity: Medium
 query_text: |-
-  %ingest.source_type="okta:system"
+  @scnr.source_type="okta:system"
   eventType=(
     user.mfa.factor.deactivate
     user.mfa.factor.reset_all

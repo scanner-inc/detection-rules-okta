@@ -13,7 +13,7 @@ description: |-
   * False positives are expected if administrators access these function through proxy legitimatly. Apply additional filters if necessary
 severity: Medium
 query_text: |-
-  %ingest.source_type="okta:system"
+  @scnr.source_type="okta:system"
   debugContext.debugData.requestUri: 'admin'
   securityContext.isProxy: true
   | stats

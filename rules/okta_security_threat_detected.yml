@@ -10,7 +10,7 @@ description: |-
   * https://developer.okta.com/docs/reference/api/event-types/
 severity: Medium
 query_text: |-
-  %ingest.source_type="okta:system"
+  @scnr.source_type="okta:system"
   eventType=security.threat.detected
   | stats
     min(@scnr.datetime) as firstTime,
