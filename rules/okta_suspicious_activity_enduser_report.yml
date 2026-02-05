@@ -1,6 +1,5 @@
 # schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
 name: Okta Suspicious Activity Reported by End-user
-enabled: true
 description: |-
   Detects when an Okta end-user reports activity by their account as being potentially suspicious.
 

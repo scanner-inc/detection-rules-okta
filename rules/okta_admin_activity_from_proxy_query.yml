@@ -1,6 +1,5 @@
 # schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
 name: Okta Admin Functions Access Through Proxy
-enabled: true
 description: |-
   Detects access to Okta admin functions through proxy.
 

@@ -12,7 +12,6 @@ description: |-
   ## Triage and response
   1. Contact the Okta administrator to confirm that the user should be deleting policy rules.
   2. If the change was not authorized, verify there are no other signals from the user.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:okta

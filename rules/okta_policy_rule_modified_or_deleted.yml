@@ -1,6 +1,5 @@
 # schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
 name: Okta Policy Rule Modified or Deleted
-enabled: true
 description: |-
   Detects when an Policy Rule is Modified or Deleted.
 

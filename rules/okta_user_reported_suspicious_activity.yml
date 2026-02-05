@@ -17,7 +17,6 @@ description: |-
   2. Check for any other activity from this address using the IP Investigation dashboard.
   3. If the activity appears harmful:
       * Initiate your organization's incident response process and investigate for any account takeovers.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:okta

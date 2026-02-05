@@ -1,6 +1,5 @@
 # schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
 name: Okta MFA Reset or Deactivated
-enabled: true
 description: |-
   Detects when an attempt at deactivating  or resetting MFA.
 

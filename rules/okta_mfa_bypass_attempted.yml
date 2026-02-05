@@ -11,7 +11,6 @@ description: |-
 
   ## Triage and Response
   Contact the user who attempted to bypass MFA to verify the legitimacy of the request.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:okta

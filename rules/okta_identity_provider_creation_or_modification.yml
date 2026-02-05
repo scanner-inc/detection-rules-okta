@@ -12,7 +12,6 @@ description: |
   2. If the user was unaware of the change:
       * Check for any unusual activity from this user, including variations in user agents, IP addresses, and network metadata.
       * Initiate the organization's incident response process and investigate potential account takeovers.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:okta

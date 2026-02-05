@@ -12,7 +12,6 @@ description: |-
   ## Triage and Response
   1. Inspect the target array to understand the reason for access denial.
   2. Contact the user to confirm if they attempted to access the app or if their account may be compromised.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:okta

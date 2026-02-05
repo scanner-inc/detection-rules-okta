@@ -12,7 +12,6 @@ description: |-
   ## Triage & Response
   1. Verify with the user that they were attempting a request to the target application.
   2. If the request cannot be verified, correlate with other log sources to see if the blocked IP in the title has communicated elsewhere on the network.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:okta

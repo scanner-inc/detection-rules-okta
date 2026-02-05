@@ -9,7 +9,6 @@ description: |-
 
   ## Triage and Response
   Contact the user who created the API token to verify its necessity.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:okta

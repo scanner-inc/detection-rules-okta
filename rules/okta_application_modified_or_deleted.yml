@@ -1,6 +1,5 @@
 # schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
 name: Okta Application Modified or Deleted
-enabled: true
 description: |-
   Detects when an application is modified or deleted.
 

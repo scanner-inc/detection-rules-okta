@@ -1,6 +1,5 @@
 # schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
 name: Okta Admin Role Assignment Created
-enabled: true
 description: |-
   Detects when a new admin role assignment is created. Which could be a sign of privilege escalation or persistence
 

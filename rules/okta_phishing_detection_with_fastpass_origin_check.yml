@@ -12,7 +12,6 @@ description: |-
   2. Determine if any other users have authenticated from this address.
   3. If yes, clear any user sessions and reset passwords if users entered a password during authentication.
   4. Initiate your organization's incident response process and investigate for potential account takeovers.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:okta

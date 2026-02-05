@@ -1,6 +1,5 @@
 # schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
 name: Okta Network Zone Deactivated or Deleted
-enabled: true
 description: |-
   Detects when an Network Zone is Deactivated or Deleted.
 

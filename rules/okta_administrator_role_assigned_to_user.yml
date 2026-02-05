@@ -12,7 +12,6 @@ description: |-
   ## Triage and response
   1. Contact the Okta administrator to confirm that the user or users should have administrative privileges.
   2. If the change was not authorized, verify there are no other signals from the Okta administrator.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:okta
